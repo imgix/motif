@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  processing: false
+  url: MyText
+  og_image_url: MyText
+  title: MyText
+  description: MyText
+  accent_color: MyString
+
+two:
+  processing: false
+  url: MyText
+  og_image_url: MyText
+  title: MyText
+  description: MyText
+  accent_color: MyString
