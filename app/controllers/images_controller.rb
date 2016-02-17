@@ -11,7 +11,7 @@ class ImagesController < ApplicationController
       h: 1200,
       fit: 'crop',
       crop: 'faces,entropy',
-      blend: "6B#{page.accent_color}",
+      blend: "6B#{params[:color]}",
       bm: 'normal',
       markalign: 'center,middle',
       blur: 60,
