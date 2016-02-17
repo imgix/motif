@@ -4,7 +4,7 @@ class PagesController < ApplicationController
     page_is_new = page.new_record?
 
     if !page_is_new || page.save
-      PageInfoWorker.perform_async(page.id)
+      PageInfoWorker.perform_async(page.id) if page_is_new || page.fetched_at < 1.minute.ago
       render json: page
     else
       render json: page.errors, status: 422
