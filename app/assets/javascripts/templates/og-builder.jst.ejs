@@ -1,3 +1,15 @@
 <div>
-  <page-url-field></page-url-field>
+  <div class="field">
+    <input
+      type="url"
+      placeholder="Enter your page URL"
+      @keyup.13="handleReturn"
+      v-model="url"
+    >
+  </div>
+
+  <p>{{ $data | json }}</p>
+  <p v-if="url && title">{{ harmonyURL }}</p>
+
+  <img width="600" v-if="url && title" :src="harmonyURL">
 </div>

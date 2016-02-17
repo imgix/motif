@@ -8,5 +8,4 @@ Rails.application.routes.draw do
 
   resources :pages, only: [:create, :show]
   get 'i', to: 'images#show'
-
 end

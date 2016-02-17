@@ -20,7 +20,7 @@ Create beautiful images to share your content, in just a few clicks.
 ### In URL
 
 * `url` (used to "vary" and fetch title)
-* `image` (old og:image)
+* `image_url` (old og:image)
 * `color` (overlay color)
 
 ### Fetched
@@ -28,3 +28,9 @@ Create beautiful images to share your content, in just a few clicks.
 * `title`
 * `description`?
 
+
+## Running Locally
+
+* `bin/rails db:setup`
+* `bin/rake bower:install`
+* `heroku local`

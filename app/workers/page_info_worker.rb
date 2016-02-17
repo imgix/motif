@@ -18,10 +18,12 @@ class PageInfoWorker
     line = Cocaine::CommandLine.new(ENV['PHANTOM_JS_PATH'] || 'phantomjs', "lib/assets/phantom-runner.js #{page.url}")
     results = JSON.parse(line.run).symbolize_keys
 
-    if results
-
-    else
-
-    end
+    page.update_attributes({
+      title: results[:title],
+      description: results[:description],
+      og_image_url: results[:ogImageURL],
+      accent_color: results[:accentColor],
+      fetched_at: DateTime.now
+    })
   end
 end

@@ -1,8 +1,9 @@
 class PagesController < ApplicationController
   def create
-    page = Page.new(page_params)
+    page = Page.find_or_initialize_by(url: params[:url])
+    page_is_new = page.new_record?
 
-    if page.save
+    if !page_is_new || page.save
       PageInfoWorker.perform_async(page.id)
       render json: page
     else
@@ -14,10 +15,5 @@ class PagesController < ApplicationController
     page = Page.find(params[:id])
 
     render json: page
-  end
-
-private
-  def page_params
-    params.require(:page).permit(:url)
   end
 end
