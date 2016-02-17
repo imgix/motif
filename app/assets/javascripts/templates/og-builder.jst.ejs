@@ -9,7 +9,16 @@
   </div>
 
   <p>{{ $data | json }}</p>
-  <p v-if="url && title">{{ harmonyURL }}</p>
 
-  <img width="600" v-if="url && title" :src="harmonyURL">
+  <template v-if="url && title">
+    <p>{{ harmonyURL }}</p>
+
+    <div class="field">
+      <label for="accentColor">Accent Color</label>
+      <input type="text" v-model="accentColor">
+    </div>
+
+
+    <img width="600" :src="harmonyURL">
+  </template>
 </div>
