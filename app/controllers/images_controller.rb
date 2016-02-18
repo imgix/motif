@@ -6,36 +6,49 @@ class ImagesController < ApplicationController
     # If this is a "new" Page (based on the URL), we'll actually want to
     # do a synchronous, minimal bootstrapping process here to grab the `title`.
 
-    full_ix_url = ix_client.path(params[:image_url]).to_url({
+    color = params[:color] || page[:accent_color]
+    base_ix_params = {
       w: 1200,
       h: 1200,
       fit: 'crop',
       crop: 'faces,entropy',
-      blend: "99#{params[:color]}",
+      blend: txt_url(page.title, color),
+      markalign: 'top,center',
+      markfit: 'max',
+      markh: 200,
+      markw: 500,
+      markpad: 80,
       bm: 'normal',
-      markalign: 'center,middle',
-      blur: 60,
-      mark: txt_url(page.title)
-    })
+      # blur: 45,
+    }
+    base_ix_params[:mark] = params[:logo_url] if params[:logo_url].present?
 
-    redirect_to full_ix_url
+    base_ix_url = ix_client.path(params[:image_url]).to_url(base_ix_params)
+
+    redirect_to base_ix_url
   end
 
 private
   def ix_client
-    Imgix::Client.new({
+    @ix_client ||= Imgix::Client.new({
       host: ENV['ix_host'],
       secure_url_token: ENV['ix_secure_url_token']
     })
   end
 
-  def txt_client
-    Imgix::Client.new({
-      host: 'assets.imgix.net'
-    })
+  def txt_url(page_title, color)
+    #
+    "https://#{ENV['ix_text_host']}/~text?txtalign=left,middle&txtclr=fff&txtsize=66&txtpad=80&txt=#{page_title}&bg=CC#{color}&w=1200&h=1200"
   end
 
-  def txt_url(page_title)
-    "https://assets.imgix.net/~text?txtfont=Avenir Next Demi,Bold&w=1000&txtclr=fff&txtsize=66&txtalign=left&txt=#{page_title}"
-  end
+  # def blend_url(color, logo_url = nil)
+  #   url = "https://#{ENV['ix_host']}/~text?w=1200&h=1200&bg=CC#{color}"
+
+  #   if logo_url
+  #     url += "&mark=#{logo_url}&markalign=top,left&markfit=max&markh=200&markpad=50"
+  #     # url += "&mark=#{logo_url}"
+  #   end
+
+  #   url
+  # end
 end

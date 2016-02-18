@@ -28,6 +28,10 @@ Vue.component('og-builder', {
     ogImageURL: {
       type: String,
       default: null
+    },
+    logoURL: {
+      type: String,
+      default: null
     }
   },
   watch: {
@@ -68,6 +72,9 @@ Vue.component('og-builder', {
     encodedOgImageURL: function() {
       return encodeURIComponent(this.ogImageURL);
     },
+    encodedLogoURL: function() {
+      return encodeURIComponent(this.logoURL);
+    },
     harmonyURL: function() {
       return [
         location.protocol,
@@ -78,7 +85,9 @@ Vue.component('og-builder', {
         '&image_url=',
         this.encodedOgImageURL,
         '&color=',
-        this.accentColor
+        this.accentColor,
+        '&logo_url=',
+        this.encodedLogoURL
       ].join('')
     }
   }
