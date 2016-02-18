@@ -18,8 +18,7 @@ class ImagesController < ApplicationController
       markh: 200,
       markw: 500,
       markpad: 80,
-      bm: 'normal',
-      # blur: 45,
+      bm: 'normal'
     }
     base_ix_params[:mark] = params[:logo_url] if params[:logo_url].present?
 
@@ -37,18 +36,6 @@ private
   end
 
   def txt_url(page_title, color)
-    #
     "https://#{ENV['ix_text_host']}/~text?txtalign=left,middle&txtclr=fff&txtsize=66&txtpad=80&txt=#{page_title}&bg=CC#{color}&w=1200&h=1200"
   end
-
-  # def blend_url(color, logo_url = nil)
-  #   url = "https://#{ENV['ix_host']}/~text?w=1200&h=1200&bg=CC#{color}"
-
-  #   if logo_url
-  #     url += "&mark=#{logo_url}&markalign=top,left&markfit=max&markh=200&markpad=50"
-  #     # url += "&mark=#{logo_url}"
-  #   end
-
-  #   url
-  # end
 end
