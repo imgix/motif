@@ -12,17 +12,13 @@ class PageInfoWorker
   def perform(page_id)
     page = Page.find(page_id)
 
-    # # phantomify things from `page.url`
-    # # when complete, set `page.processing = false` + data pulled back
-
-    line = Cocaine::CommandLine.new(ENV['PHANTOM_JS_PATH'] || 'phantomjs', "lib/assets/phantom-runner.js #{page.url}")
-    results = JSON.parse(line.run).symbolize_keys
+    meta = PageInfoFetcher.new(page).fetch
 
     page.update_attributes({
-      title: results[:title],
-      description: results[:description],
-      og_image_url: results[:ogImageURL],
-      accent_color: results[:accentColor],
+      title: meta[:title],
+      description: meta[:description],
+      og_image_url: meta[:og_image_url],
+      accent_color: meta[:accent_color],
       fetched_at: DateTime.now
     })
   end

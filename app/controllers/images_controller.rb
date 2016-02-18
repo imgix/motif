@@ -11,7 +11,7 @@ class ImagesController < ApplicationController
       h: 1200,
       fit: 'crop',
       crop: 'faces,entropy',
-      blend: "6B#{params[:color]}",
+      blend: "99#{params[:color]}",
       bm: 'normal',
       markalign: 'center,middle',
       blur: 60,
@@ -36,6 +36,6 @@ private
   end
 
   def txt_url(page_title)
-    "https://assets.imgix.net/~text?txtfont=Avenir Next Demi,Bold&w=1000&txtclr=fff&txtsize=66&txtalign=center&txt=#{page_title}"
+    "https://assets.imgix.net/~text?txtfont=Avenir Next Demi,Bold&w=1000&txtclr=fff&txtsize=66&txtalign=left&txt=#{page_title}"
   end
 end
