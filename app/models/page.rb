@@ -10,6 +10,7 @@ class Page < ApplicationRecord
       description: results[:description],
       og_image_url: results[:ogImageURL],
       accent_color: results[:accentColor],
+      logo_url: "https://logo.clearbit.com/#{URI(url).host}?format=png&size=300",
       fetched_at: DateTime.now
     })
   end

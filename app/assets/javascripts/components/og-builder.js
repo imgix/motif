@@ -53,6 +53,7 @@ Vue.component('og-builder', {
         that.description = res.data.description;
         that.accentColor = res.data.accent_color;
         that.ogImageURL = res.data.og_image_url;
+        that.logoURL = res.data.logo_url;
         that.fetchedAt = res.data.fetched_at;
       }, function(res) {
         alert('Something went wrong: ' + res.status);

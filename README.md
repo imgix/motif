@@ -66,3 +66,7 @@ https://harmony-development.imgix.net/https%3A%2F%2Fqzprod.files.wordpress.com%2
 
 
 https://harmony-development.imgix.net/https%3A%2F%2Fqzprod.files.wordpress.com%2F2016%2F02%2Frtx1ufx3-e1455664443666.jpg%3Fquality%3D80%26strip%3Dall%26w%3D1600?ixlib=rb-1.0.0&w=1200&h=1200&fit=crop&crop=faces%2Centropy&blend=https%3A%2F%2Fharmony-development-text.imgix.net%2F%7Etext%3Ftxtalign%3Dleft%2Cmiddle%26txtclr%3Dfff%26txtsize%3D66%26txtpad%3D80%26txt%3DEven+US+Republicans+agree+with+Obama+on+this%3A+Africa+needs+electricity%26bg%3DCC168dd9%26w%3D1200%26h%3D1200&markalign=top%2Ccenter&markfit=max&markh=200&markpad=80&bm=normal&mark=http%3A%2F%2Fmedia.npr.org%2Fchrome%2Fnews%2Fnpr-home.png&s=e69b5d2250ea8022b994d5eff3285039
+
+
+broke ass stuart breaks… phantom? i think? http://brokeassstuart.com/blog/2016/02/18/open-letter-to-justin-keller-tech-bro/
+
