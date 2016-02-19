@@ -11,7 +11,7 @@
   <p>{{ $data | json }}</p>
 
   <template v-if="url && title">
-    <p>{{ harmonyURL }}</p>
+    <p>{{ motifURL }}</p>
 
     <div class="field">
       <label for="accentColor">Accent Color</label>
@@ -23,6 +23,6 @@
       <input type="url" v-model="logoURL">
     </div>
 
-    <img width="600" :src="harmonyURL">
+    <img width="600" :src="motifURL">
   </template>
 </div>

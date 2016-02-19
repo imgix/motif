@@ -76,7 +76,7 @@ Vue.component('og-builder', {
     encodedLogoURL: function() {
       return encodeURIComponent(this.logoURL);
     },
-    harmonyURL: function() {
+    motifURL: function() {
       return [
         location.protocol,
         '//',
