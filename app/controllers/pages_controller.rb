@@ -4,12 +4,7 @@ class PagesController < ApplicationController
     page_is_new = page.new_record?
 
     if !page_is_new || page.save
-      last_fetch = page.fetched_at
-      page_is_expired = last_fetch.present? ?
-        last_fetch < 1.minute.ago :
-        true
-
-      page.fetch! if page_is_new || page_is_expired
+      page.fetch! if page_is_new || page.expired?
 
       render json: page
     else

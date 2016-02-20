@@ -32,6 +32,26 @@ Vue.component('og-builder', {
     logoURL: {
       type: String,
       default: null
+    },
+    logoAlignment: {
+      type: String,
+      default: 'bottom,right'
+    },
+    textPosition: {
+      type: String,
+      default: 'top'
+    },
+    textAlignment: {
+      type: String,
+      default: 'left'
+    },
+    logoPadding: {
+      type: Number,
+      default: 0
+    },
+    loading: {
+      type: Boolean,
+      default: false
     }
   },
   watch: {
@@ -42,11 +62,14 @@ Vue.component('og-builder', {
   methods: {
     handleReturn: function() {
       var that = this;
+      that.loading = true;
 
       Vue.http.post('/pages', {
         authenticity_token: AUTH_TOKEN,
         url: this.fullURL
       }).then(function(res) {
+        that.loading = false;
+
         that.id = res.data.id;
         that.url = res.data.url;
         that.title = res.data.title;
@@ -56,6 +79,8 @@ Vue.component('og-builder', {
         that.logoURL = res.data.logo_url;
         that.fetchedAt = res.data.fetched_at;
       }, function(res) {
+        that.loading = false;
+
         alert('Something went wrong: ' + res.status);
         console.error(res);
       });
@@ -76,7 +101,13 @@ Vue.component('og-builder', {
     encodedLogoURL: function() {
       return encodeURIComponent(this.logoURL);
     },
-    motifURL: function() {
+    encodedLogoAlignment: function() {
+      return encodeURIComponent(this.logoAlignment);
+    },
+    encodedTextAlignment: function() {
+      return encodeURIComponent(this.textPosition + ',' + this.textAlignment);
+    },
+    fullImageURL: function() {
       return [
         location.protocol,
         '//',
@@ -88,8 +119,17 @@ Vue.component('og-builder', {
         '&color=',
         this.accentColor,
         '&logo_url=',
-        this.encodedLogoURL
+        this.encodedLogoURL,
+        '&logo_alignment=',
+        this.encodedLogoAlignment,
+        '&text_alignment=',
+        this.encodedTextAlignment,
+        '&logo_padding=',
+        this.logoPadding
       ].join('')
+    },
+    facebookImageURL: function() {
+      return this.fullImageURL + '&format=facebook'
     }
   }
 });

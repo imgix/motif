@@ -1,34 +1,59 @@
 class ImagesController < ApplicationController
   def show
-    page = Page.find_by!(url: params[:url])
+    @page = Page.find_or_initialize_by(url: params[:url])
+    page_is_new = @page.new_record?
 
-    # page = Page.find_or_create_by(params[:url])
-    # If this is a "new" Page (based on the URL), we'll actually want to
-    # do a synchronous, minimal bootstrapping process here to grab the `title`.
+    @page.save! if page_is_new
+    @page.fetch! if page_is_new || @page.expired?
 
-    color = params[:color] || page[:accent_color]
+    format = params[:format] || 'full'
 
-    base_ix_params = {
-      w: 1200,
-      h: 1200,
-      fit: 'crop',
-      crop: 'faces,entropy',
-      blend64: b64(txt_url(page.title, color)),
-      markalign: 'bottom,right',
-      markfit: 'max',
-      markh: 250,
-      markw: 600,
-      markpad: 0,
-      bm: 'normal'
-    }
-    base_ix_params[:mark64] = b64(params[:logo_url]) if params[:logo_url].present?
-
-    base_ix_url = ix_client.path(params[:image_url]).to_url(base_ix_params)
-
-    redirect_to base_ix_url
+    redirect_to send("#{format}_ix_url")
   end
 
 private
+  def base_ix_params(w: 1200, h: 1200, txtsize: 66)
+    ix_params = {
+      w: w,
+      h: h,
+      fit: 'crop',
+      crop: 'faces,entropy',
+      blend64: b64(txt_url(@page.title, color, w: w, h: h, txtsize: txtsize)),
+      markalign: params[:logo_alignment],
+      markfit: 'max',
+      markh: 250,
+      markw: 600,
+      markpad: params[:logo_padding],
+      bm: 'normal'
+    }
+    ix_params[:mark64] = b64(params[:logo_url]) if params[:logo_url].present?
+
+    return ix_params
+  end
+
+  def full_ix_url
+    ix_client.path(base_url).to_url(base_ix_params)
+  end
+
+  def facebook_ix_url
+    ix_params = base_ix_params(h: 630, txtsize: 57)
+    ix_params[:markh] = 180
+    ix_params[:markw] = 450
+
+    ix_client.path(base_url).to_url(ix_params)
+  end
+  alias_method :twitter_ix_url, :facebook_ix_url
+
+  def base_url
+    params[:image_url] == 'null' ?
+      'http://assets.imgix.net/imgix-blank.png' :
+      params[:image_url]
+  end
+
+  def color
+    params[:color] || @page[:accent_color]
+  end
+
   def ix_client
     @ix_client ||= Imgix::Client.new({
       host: ENV['ix_host'],
@@ -42,17 +67,17 @@ private
     })
   end
 
-  def txt_url(title, color)
+  def txt_url(title, color, w:, h:, txtsize:)
     ix_assets_client.path('~text').to_url({
-      txtalign64: b64('left,middle'),
+      txtalign64: b64(params[:text_alignment]),
       txtclr: 'fff',
-      txtsize: 66,
+      txtsize: txtsize,
       txtpad: 80,
       txtfont64: b64('Avenir Next Demi,Bold'),
       txt64: b64(title),
       bg: "CC#{color}",
-      w: 1200,
-      h: 1200
+      w: w,
+      h: h
     })
   end
 

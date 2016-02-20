@@ -1,0 +1,29 @@
+.og-builder {
+  h1 {
+    font-weight: 500;
+    margin: 60px 0 24px;
+
+    span {
+      @extend %roboto-slab;
+
+      display: inline-block;
+      width: 33px;
+      height: 33px;
+      line-height: 33px;
+      border-radius: 33px;
+      background: #007194;
+      text-align: center;
+      margin-right: 6px;
+    }
+  }
+
+  .loading {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+
+    .loader {
+      margin-top: 12px;
+    }
+  }
+}

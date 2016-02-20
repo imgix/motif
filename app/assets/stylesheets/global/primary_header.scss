@@ -1,0 +1,39 @@
+.primary-header {
+  margin-top: 36px;
+
+  h2 {
+    font-weight: 400;
+    text-align: center;
+    font-size: 21px;
+    color: #fff;
+
+    a {
+      text-decoration: none;
+      vertical-align: -18px;
+      display: inline-block;
+      margin-right: 9px;
+      width: 130px;
+
+      svg {
+        max-width: 100%;
+      }
+    }
+  }
+
+  h1 {
+    @extend %pacifico;
+    font-size: 48px;
+    text-align: center;
+    color: #d0d7dd;
+  }
+
+  h3 {
+    font-size: 18px;
+    line-height: 30px;
+    margin: 42px auto 0;
+    font-weight: 400;
+    width: 560px;
+    text-align: center;
+    max-width: 90%;
+  }
+}

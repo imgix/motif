@@ -1,0 +1,26 @@
+.field {
+  margin-bottom: 1.5em;
+
+  label, .label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+
+  input[type="text"], input[type="url"], input[type="number"], select {
+    display: block;
+    width: 100%;
+    font-size: 18px;
+    outline: 0;
+    color: #2a3843;
+    border-radius: 1px;
+    padding: 9px 12px;
+    -webkit-appearance: none;
+  }
+
+  input[type="text"], input[type="url"], input[type="number"] {
+  }
+
+  select {
+  }
+}

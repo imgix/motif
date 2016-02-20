@@ -1,0 +1,44 @@
+$container-width: 960px;
+$breakpoint-sm: '(max-width: 700px)';
+
+* { margin: 0; padding: 0; border: 0; box-sizing: border-box; }
+
+html { overflow-y: scroll; }
+
+body, input, select, textarea, button { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility; }
+
+a { -webkit-tap-highlight-color: rgba(97, 218, 255, 0.9); }
+
+::-moz-selection { background: rgba(97, 218, 255, 0.9); color: #fff; text-shadow: none; }
+::selection { background: rgba(97, 218, 255, 0.9); color: #fff; text-shadow: none; }
+
+img { -ms-interpolation-mode: bicubic; }
+strong { font-weight: bold; }
+em { font-style: italic; }
+
+%group:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+%pacifico {
+  font-family: "Pacifico", sans-serif;
+  font-weight: 400;
+}
+
+%roboto-slab {
+  font-family: "Roboto Slab", serif;
+}
+
+
+body {
+  background: #22303a;
+  color: #d0d7dd;
+}
+
+body, input, select, textarea, button {
+  font-family: "Roboto", sans-serif;
+}

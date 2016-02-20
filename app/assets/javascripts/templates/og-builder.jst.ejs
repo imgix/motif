@@ -1,28 +1,99 @@
-<div>
-  <div class="field">
-    <input
-      type="url"
-      placeholder="Enter your page URL"
-      @keyup.13="handleReturn"
-      v-model="url"
-    >
+<div class="og-builder">
+  <section>
+    <header class="row">
+      <h1 class="large-12 columns">
+        <span>1</span>
+        Paste in a URL
+      </h1>
+    </header>
+
+    <div class="row">
+      <div class="field large-12 columns">
+        <input
+          type="url"
+          @keyup.13="handleReturn"
+          v-model="url"
+        >
+      </div>
+    </div>
+
+    <div v-if="loading" class="loading" transition="slide">
+      Just a second, we're crunching some bits…
+
+      <div class="loader">
+        <svg class="circular" viewBox="25 25 50 50">
+          <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <div v-if="!loading && url && title" transition="slide">
+    <section class="row">
+      <header class="large-12 columns">
+        <h1>
+          <span>2</span>
+          We made our best guess, now you can set it up <em>just right</em>
+        </h1>
+      </header>
+    </section>
+
+    <div class="row">
+      <div class="field large-4 columns">
+        <label for="ogImageURL">Image URL</label>
+        <input type="url" v-model="ogImageURL">
+      </div>
+
+      <div class="field large-4 columns">
+        <label for="accentColor">Accent Color</label>
+        <color-picker-input :color.sync="accentColor"></color-picker-input>
+      </div>
+
+      <div class="field large-4 columns">
+        <label for="logoURL">Logo URL</label>
+        <input type="url" v-model="logoURL">
+      </div>
+
+      <div class="field large-3 columns">
+        <label for="textPosition">Text Position</label>
+        <select v-model="textPosition" id="textPosition">
+          <option value="top">Top</option>
+          <option value="middle">Middle</option>
+          <option value="bottom">Bottom</option>
+        </select>
+      </div>
+
+      <div class="field large-3 columns">
+        <label for="textAlignment">Text Alignment</label>
+        <select v-model="textAlignment" id="textAlignment">
+          <option value="left">Left</option>
+          <option value="center">Center</option>
+          <option value="right">Right</option>
+        </select>
+      </div>
+
+      <div class="field large-3 columns">
+        <label for="logoAlignment">Logo Alignment</label>
+        <select v-model="logoAlignment" id="logoAlignment">
+          <option value="top,left">Top Left</option>
+          <option value="top,center">Top Center</option>
+          <option value="top,right">Top Right</option>
+          <option value="middle,left">Middle Left</option>
+          <option value="middle,center">Middle Center</option>
+          <option value="middle,right">Middle Right</option>
+          <option value="bottom,left">Bottom Left</option>
+          <option value="bottom,center">Bottom Center</option>
+          <option value="bottom,right">Bottom Right</option>
+        </select>
+      </div>
+
+      <div class="field large-3 columns">
+        <label for="logoPadding">Logo Padding</label>
+        <input type="number" v-model="logoPadding">
+      </div>
+
+      <img class="large-12 columns" :src="facebookImageURL">
+    </div>
+
   </div>
-
-  <p>{{ $data | json }}</p>
-
-  <template v-if="url && title">
-    <p>{{ motifURL }}</p>
-
-    <div class="field">
-      <label for="accentColor">Accent Color</label>
-      <input type="text" v-model="accentColor">
-    </div>
-
-    <div class="field">
-      <label for="logoURL">Logo URL</label>
-      <input type="url" v-model="logoURL">
-    </div>
-
-    <img width="600" :src="motifURL">
-  </template>
 </div>

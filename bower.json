@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "vue": "^1.0.16",
-    "vue-resource": "^0.7.0"
+    "vue-resource": "^0.7.0",
+    "foundation": "^5.5.3"
   }
 }

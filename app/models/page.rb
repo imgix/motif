@@ -1,6 +1,10 @@
 class Page < ApplicationRecord
   validates :url, presence: true, url: { no_local: true }
 
+  def expired?
+    fetched_at.present? ? fetched_at < 7.days.ago : true
+  end
+
   def fetch!
     line = Cocaine::CommandLine.new(ENV['PHANTOM_JS_PATH'] || 'phantomjs', "lib/assets/phantom_runner.js #{url}")
     results = JSON.parse(line.run).symbolize_keys
