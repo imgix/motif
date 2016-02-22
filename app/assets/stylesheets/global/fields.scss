@@ -19,12 +19,17 @@
     border-radius: 1px;
     padding: 9px;
     -webkit-appearance: none;
-  }
 
-  input[type="text"], input[type="url"], input[type="number"] {
-
+    &[readonly] {
+      opacity: 0.6;
+    }
   }
 
   select {
+    cursor: pointer;
+    background-image: url("data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2MDAgNjAwIiB3aWR0aD0iOXB4IiBoZWlnaHQ9IjlweCIgdmVyc2lvbj0iMS4xIj4NCgk8cG9seWdvbiBwb2ludHM9IjUwLDE1NS43IDU1MCwxNTUuNyAzMDAsNTg4LjMiIHN0eWxlPSJmaWxsOiMyQTM4NDM7Ii8+DQo8L3N2Zz4=");
+    background-repeat: no-repeat;
+    background-position: right 6px center;
+    padding-right: 21px;
   }
 }
