@@ -33,7 +33,7 @@ class Page < ApplicationRecord
     # servers trying to read from us don't care either way, and users in the
     # GUI can just edit from this state.
 
-    # Raven.capture_exception(e)
+    Raven.capture_exception(e)
 
     update_attributes!({
       title: '',
