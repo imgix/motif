@@ -13,6 +13,15 @@ http://paul.st/fCUz
 
 ## Running Locally
 
+You'll need:
+
+* Node
+* Ruby 2.3.0
+  * rvm users can run `rvm install 2.3.0`
+* [Heroku Toolbelt](https://toolbelt.heroku.com)
+
+Then, just run:
+
 * `bin/rails db:setup`
 * `bin/rake bower:install`
 * `heroku local`
