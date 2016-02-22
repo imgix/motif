@@ -35,5 +35,16 @@
     width: 560px;
     text-align: center;
     max-width: 90%;
+
+    code {
+      display: inline-block;
+      background: #354b5a;
+      color: #fff;
+      font-size: 16px;
+      padding: 0 3px;
+      line-height: 21px;
+      vertical-align: 1px;
+      border-radius: 1px;
+    }
   }
 }

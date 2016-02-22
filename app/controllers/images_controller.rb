@@ -54,6 +54,10 @@ private
     params[:color] || @page[:accent_color]
   end
 
+  def font_family
+    params[:font_family] || 'Avenir Next Demi,Bold'
+  end
+
   def ix_client
     @ix_client ||= Imgix::Client.new({
       host: ENV['ix_host'],
@@ -73,7 +77,7 @@ private
       txtclr: 'fff',
       txtsize: txtsize,
       txtpad: 80,
-      txtfont64: b64('Avenir Next Demi,Bold'),
+      txtfont64: b64(font_family),
       txt64: b64(title),
       bg: "CC#{color}",
       w: w,
