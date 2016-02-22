@@ -4,7 +4,7 @@ class ImagesController < ApplicationController
     page_is_new = @page.new_record?
 
     @page.save! if page_is_new
-    @page.fetch! if page_is_new || @page.expired?
+    @page.fetch if page_is_new || @page.expired?
 
     format = params[:format] || 'full'
 
@@ -45,8 +45,9 @@ private
   alias_method :twitter_ix_url, :facebook_ix_url
 
   def base_url
-    params[:image_url].present? ?
-      params[:image_url] :
+    image_url = params[:image_url]
+    image_url.present? && image_url != 'null' ?
+      image_url :
       'http://assets.imgix.net/imgix-blank.png'
   end
 

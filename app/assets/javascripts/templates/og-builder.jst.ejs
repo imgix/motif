@@ -28,7 +28,7 @@
     </div>
   </section>
 
-  <div v-if="!loading && url && title" transition="slide">
+  <div v-if="!loading && url && title !== null" transition="slide">
     <section class="row">
       <header class="large-12 columns">
         <h1>
