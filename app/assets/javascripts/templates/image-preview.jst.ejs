@@ -1,0 +1,7 @@
+<div class="image-preview">
+  <img :src="url" @load="handleLoad">
+
+  <div v-if="loading" transition="fade" class="loading-overlay">
+    <loader></loader>
+  </div>
+</div>
