@@ -1,8 +1,9 @@
 class Page < ApplicationRecord
+  CACHE_DURATION = 1.month
   validates :url, presence: true, url: { no_local: true }
 
   def expired?
-    fetched_at.present? ? fetched_at < 7.days.ago : true
+    fetched_at.present? ? fetched_at < CACHE_DURATION.ago : true
   end
 
   def fetch!
