@@ -45,6 +45,10 @@ Vue.component('og-builder', {
       type: String,
       default: 'left'
     },
+    fontFamily: {
+      type: String,
+      default: 'Avenir Next Demi,Bold'
+    },
     logoPadding: {
       type: Number,
       default: 0
@@ -125,7 +129,9 @@ Vue.component('og-builder', {
         '&text_alignment=',
         this.encodedTextAlignment,
         '&logo_padding=',
-        this.logoPadding
+        this.logoPadding,
+        '&font_family=',
+        this.fontFamily
       ].join('')
     },
     facebookImageURL: function() {
