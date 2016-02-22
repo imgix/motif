@@ -1,0 +1,18 @@
+.slide-transition {
+  transition: all 120ms ease-out;
+  transform-origin: top center;
+  position: relative;
+}
+
+.slide-enter, .slide-leave {
+  opacity: 0;
+  transform: scale(0.9) translateY(-30px);
+}
+
+.fade-transition {
+  transition: opacity 240ms ease-out;
+}
+
+.fade-enter, .fade-leave {
+  opacity: 0;
+}
