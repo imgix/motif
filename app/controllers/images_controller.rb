@@ -69,8 +69,8 @@ private
 
   def ix_client
     @ix_client ||= Imgix::Client.new({
-      host: ENV['ix_host'],
-      secure_url_token: ENV['ix_secure_url_token']
+      host: ENV['IX_HOST'],
+      secure_url_token: ENV['IX_SECURE_URL_TOKEN']
     })
   end
 
