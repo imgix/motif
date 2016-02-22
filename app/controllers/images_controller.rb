@@ -18,7 +18,7 @@ private
       h: h,
       fit: 'crop',
       crop: 'faces,entropy',
-      blend64: b64(txt_url(@page.title, color, w: w, h: h, txtsize: txtsize)),
+      blend64: b64(txt_url(w: w, h: h, txtsize: txtsize)),
       markalign: params[:logo_alignment],
       markfit: 'max',
       markh: 250,
@@ -51,8 +51,16 @@ private
       'http://assets.imgix.net/imgix-blank.png'
   end
 
+  def title
+    @page.title || ''
+  end
+
   def color
     params[:color] || @page[:accent_color]
+  end
+
+  def text_color
+    params[:text_color] || 'fff'
   end
 
   def font_family
@@ -72,10 +80,10 @@ private
     })
   end
 
-  def txt_url(title, color, w:, h:, txtsize:)
+  def txt_url(w:, h:, txtsize:)
     ix_assets_client.path('~text').to_url({
       txtalign64: b64(params[:text_alignment]),
-      txtclr: 'fff',
+      txtclr: text_color,
       txtsize: txtsize,
       txtpad: 80,
       txtfont64: b64(font_family),
