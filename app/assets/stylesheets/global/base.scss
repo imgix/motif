@@ -42,3 +42,18 @@ body {
 body, input, select, textarea, button {
   font-family: "Roboto", sans-serif;
 }
+
+p {
+  margin-bottom: 21px;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+  color: #2ECFFF;
+
+  &:hover {
+    color: #61DAFF;
+  }
+}
