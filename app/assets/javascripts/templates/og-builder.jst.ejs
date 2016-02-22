@@ -73,6 +73,16 @@
       </div>
 
       <div class="field large-3 columns">
+        <label for="fontFamily">Font Family</label>
+        <select v-model="fontFamily" id="fontFamily">
+          <option value="Avenir Next Demi,Bold">Avenir</option>
+          <option value="DIN Alternate,Bold">Din</option>
+          <option value="Charter">Charter</option>
+          <option value="Georgia">Georgia</option>
+        </select>
+      </div>
+
+      <div class="field large-3 columns">
         <label for="logoAlignment">Logo Alignment</label>
         <select v-model="logoAlignment" id="logoAlignment">
           <option value="top,left">Top Left</option>
