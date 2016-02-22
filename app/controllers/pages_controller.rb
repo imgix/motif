@@ -1,6 +1,4 @@
 class PagesController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: [:destroy]
-
   def create
     page = Page.find_or_initialize_by(url: params[:url])
     page_is_new = page.new_record?
