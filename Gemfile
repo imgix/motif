@@ -12,6 +12,7 @@ gem 'pg', '~> 0.18'
 gem 'puma'
 gem 'sass-rails', '~> 5.0'
 gem 'sentry-raven'
+gem 'skylight'
 gem 'uglifier', '>= 1.3.0'
 gem 'validate_url'
 
