@@ -3,7 +3,7 @@ ruby '2.3.0'
 
 gem 'rails', '>= 5.0.0.beta2', '< 5.1'
 
-gem 'bower-rails', '~> 0.10.0'
+gem 'bower'
 gem 'cocaine'
 gem 'dotenv-rails'
 gem 'ejs'

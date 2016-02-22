@@ -42,7 +42,8 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.4.0)
     arel (7.0.0)
-    bower-rails (0.10.0)
+    bower (0.0.5)
+      multi_json
     builder (3.2.2)
     byebug (8.2.2)
     climate_control (0.0.3)
@@ -76,6 +77,7 @@ GEM
     mime-types (2.99)
     mini_portile2 (2.0.0)
     minitest (5.8.4)
+    multi_json (1.11.2)
     multipart-post (2.0.0)
     nio4r (1.2.1)
     nokogiri (1.6.7.2)
@@ -160,7 +162,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bower-rails (~> 0.10.0)
+  bower
   byebug
   cocaine
   dotenv-rails
