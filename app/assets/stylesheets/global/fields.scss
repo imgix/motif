@@ -7,7 +7,10 @@
     margin-bottom: 6px;
   }
 
-  input[type="text"], input[type="url"], input[type="number"], select {
+  input[type="text"],
+  input[type="url"],
+  input[type="number"],
+  select {
     display: block;
     width: 100%;
     font-size: 18px;
@@ -19,6 +22,7 @@
   }
 
   input[type="text"], input[type="url"], input[type="number"] {
+
   }
 
   select {

@@ -107,6 +107,9 @@ Vue.component('og-builder', {
     encodedTextAlignment: function() {
       return encodeURIComponent(this.textPosition + ',' + this.textAlignment);
     },
+    cleanedAccentColor: function() {
+      return this.accentColor.replace('#', '');
+    },
     fullImageURL: function() {
       return [
         location.protocol,
@@ -117,7 +120,7 @@ Vue.component('og-builder', {
         '&image_url=',
         this.encodedOgImageURL,
         '&color=',
-        this.accentColor,
+        this.cleanedAccentColor,
         '&logo_url=',
         this.encodedLogoURL,
         '&logo_alignment=',

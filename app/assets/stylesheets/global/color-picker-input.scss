@@ -1,0 +1,29 @@
+.field {
+  .color-picker-input {
+    position: relative;
+
+    .display {
+      width: 42px;
+      height: 42px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      border-radius: 1px 0 0 1px;
+    }
+
+    input[type="color"] {
+      display: block;
+      cursor: pointer;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 42px;
+      height: 42px;
+      opacity: 0.01;
+    }
+
+    input[type="text"] {
+      padding-left: 51px;
+    }
+  }
+}

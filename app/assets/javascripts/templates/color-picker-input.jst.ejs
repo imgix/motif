@@ -1,3 +1,5 @@
-<div>
-  <input type="text" v-model="color">
+<div class="color-picker-input">
+  <div class="display" :style="{ background: hashColor }"></div>
+  <input type="color" v-model="hashColor" tabindex="-1">
+  <input type="text" pattern="^#?[a-fA-F0-9]{6}$" placeholder="ff0000" v-model="color">
 </div>

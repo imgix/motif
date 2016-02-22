@@ -45,9 +45,9 @@ private
   alias_method :twitter_ix_url, :facebook_ix_url
 
   def base_url
-    params[:image_url] == 'null' ?
-      'http://assets.imgix.net/imgix-blank.png' :
-      params[:image_url]
+    params[:image_url].present? ?
+      params[:image_url] :
+      'http://assets.imgix.net/imgix-blank.png'
   end
 
   def color
