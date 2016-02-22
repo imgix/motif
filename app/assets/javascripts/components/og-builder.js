@@ -49,6 +49,10 @@ Vue.component('og-builder', {
       type: String,
       default: 'Avenir Next Demi,Bold'
     },
+    textColor: {
+      type: String,
+      default: 'ffffff'
+    },
     logoPadding: {
       type: Number,
       default: 0
@@ -58,13 +62,8 @@ Vue.component('og-builder', {
       default: false
     }
   },
-  watch: {
-    fetchedAt: function(val, oldVal) {
-      // start watcher loop
-    }
-  },
   methods: {
-    handleReturn: function() {
+    handleURLReturn: function() {
       var that = this;
       that.loading = true;
 
@@ -88,6 +87,15 @@ Vue.component('og-builder', {
         alert('Something went wrong: ' + res.status);
         console.error(res);
       });
+    },
+    handleURLClick: function() {
+      if (this.title != null) {
+        this.title = null;
+        this.url = null;
+      }
+    },
+    selectFullURL: function(e) {
+      e.target.select();
     }
   },
   computed: {
@@ -114,6 +122,9 @@ Vue.component('og-builder', {
     cleanedAccentColor: function() {
       return this.accentColor.replace('#', '');
     },
+    cleanedTextColor: function() {
+      return this.textColor.replace('#', '');
+    },
     fullImageURL: function() {
       return [
         location.protocol,
@@ -134,7 +145,9 @@ Vue.component('og-builder', {
         '&logo_padding=',
         this.logoPadding,
         '&font_family=',
-        this.fontFamily
+        this.fontFamily,
+        '&text_color=',
+        this.cleanedTextColor
       ].join('')
     },
     facebookImageURL: function() {

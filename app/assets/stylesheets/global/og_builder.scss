@@ -1,4 +1,6 @@
 .og-builder {
+  padding-bottom: 120px;
+
   h1 {
     font-weight: 500;
     margin: 60px 0 24px;
@@ -24,6 +26,12 @@
 
     .loader {
       margin-top: 12px;
+    }
+  }
+
+  .field {
+    .final-url[readonly] {
+      opacity: 1;
     }
   }
 }

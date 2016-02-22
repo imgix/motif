@@ -1,5 +1,5 @@
 <div class="og-builder">
-  <section>
+  <section class="enter-url">
     <header class="row">
       <h1 class="large-12 columns">
         <span>1</span>
@@ -11,8 +11,10 @@
       <div class="field large-12 columns">
         <input
           type="url"
-          @keyup.13="handleReturn"
+          @keyup.13="handleURLReturn"
+          @click="handleURLClick"
           v-model="url"
+          :readonly="url != '' && title"
         >
       </div>
     </div>
@@ -20,90 +22,122 @@
     <div v-if="loading" class="loading" transition="slide">
       Just a second, we're crunching some bits…
 
-      <div class="loader">
-        <svg class="circular" viewBox="25 25 50 50">
-          <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
-        </svg>
-      </div>
+      <loader></loader>
     </div>
   </section>
 
   <div v-if="!loading && url && title !== null" transition="slide">
-    <section class="row">
-      <header class="large-12 columns">
-        <h1>
+    <section class="customize">
+      <header class="row">
+        <h1 class="large-12 columns">
           <span>2</span>
-          We made our best guess, now you can set it up <em>just right</em>
+          We made our best guess. Now you can set it up <em>just right</em>
         </h1>
       </header>
+
+      <div class="row">
+        <div class="columns medium-10 medium-centered large-8 large-uncentered">
+          <image-preview :url="facebookImageURL"></image-preview>
+        </div>
+
+        <div class="columns large-4">
+          <div class="row">
+            <div class="field columns small-6 medium-4 large-12">
+              <label for="ogImageURL">Image URL</label>
+              <input id="ogImageURL" type="url" v-model="ogImageURL">
+            </div>
+
+            <div class="field columns small-6 medium-4 large-12">
+              <label for="logoURL">Logo URL</label>
+              <input id="logoURL" type="url" v-model="logoURL">
+            </div>
+
+            <div class="field columns medium-4 large-12">
+              <label>Accent Color</label>
+              <color-picker-input :color.sync="accentColor"></color-picker-input>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="field small-6 medium-4 large-2 columns">
+          <label for="textPosition">Text Position</label>
+          <select v-model="textPosition" id="textPosition">
+            <option value="top">Top</option>
+            <option value="middle">Middle</option>
+            <option value="bottom">Bottom</option>
+          </select>
+        </div>
+
+        <div class="field small-6 medium-4 large-2 columns">
+          <label for="textAlignment">Text Alignment</label>
+          <select v-model="textAlignment" id="textAlignment">
+            <option value="left">Left</option>
+            <option value="center">Center</option>
+            <option value="right">Right</option>
+          </select>
+        </div>
+
+        <div class="field small-6 medium-4 large-2 columns">
+          <label for="fontFamily">Font Family</label>
+          <select v-model="fontFamily" id="fontFamily">
+            <option value="Avenir Next Demi,Bold">Avenir</option>
+            <option value="DIN Alternate,Bold">Din</option>
+            <option value="Charter">Charter</option>
+            <option value="Georgia">Georgia</option>
+          </select>
+        </div>
+
+        <div class="field small-6 medium-4 large-2 columns">
+          <label>Text Color</label>
+          <color-picker-input :color.sync="textColor"></color-picker-input>
+        </div>
+
+        <div class="field small-6 medium-4 large-2 columns">
+          <label for="logoAlignment">Logo Alignment</label>
+          <select v-model="logoAlignment" id="logoAlignment">
+            <option value="top,left">Top left</option>
+            <option value="top,center">Top center</option>
+            <option value="top,right">Top right</option>
+            <option value="bottom,left">Btm left</option>
+            <option value="bottom,center">Btm center</option>
+            <option value="bottom,right">Btm right</option>
+          </select>
+        </div>
+
+        <div class="field small-6 medium-4 large-2 columns">
+          <label for="logoPadding">Logo Padding</label>
+          <input type="number" v-model="logoPadding">
+        </div>
+      </div>
     </section>
 
-    <div class="row">
-      <div class="field large-4 columns">
-        <label for="ogImageURL">Image URL</label>
-        <input type="url" v-model="ogImageURL">
+    <section class="start-sharing">
+      <header class="row">
+        <h1 class="large-12 columns">
+          <span>3</span>
+          Start sharing!
+        </h1>
+      </header>
+
+      <div class="row">
+        <div class="small-8 small-centered medium-4 medium-uncentered large-4 columns">
+          <image-preview :url="fullImageURL"></image-preview>
+        </div>
+
+        <div class="medium-8 large-8 columns">
+          <div class="field">
+            <input type="text" class="final-url" v-model="fullImageURL" readonly @click="selectFullURL">
+          </div>
+
+          <p>This URL can be used to replace your page's existing <code>og:image</code> content, or shared directly anywhere on the internet. If you integrate it into your page using the <code>og:image</code> tag, this dynamic image will show up whenever people share your page on sites like Facebook or Twitter, and automatically tweak its layout to fit each platform.</p>
+
+          <p>If you're replacing the <code>og:image</code> of a dynamic website, you can simply swap out the <code>url</code> and <code>image_url</code> query string parameters of the generated URL on each page, just make sure to URL encode them! the title of each unique page will be pulled in automatically.</p>
+
+          <p>If you have any questions or thoughts, we'd love to hear from you on <a href="https://twitter.com/imgix">Twitter</a>, or in <a href="http://slack.imgix.com">our community Slack</a>.
+        </div>
       </div>
-
-      <div class="field large-4 columns">
-        <label for="accentColor">Accent Color</label>
-        <color-picker-input :color.sync="accentColor"></color-picker-input>
-      </div>
-
-      <div class="field large-4 columns">
-        <label for="logoURL">Logo URL</label>
-        <input type="url" v-model="logoURL">
-      </div>
-
-      <div class="field large-3 columns">
-        <label for="textPosition">Text Position</label>
-        <select v-model="textPosition" id="textPosition">
-          <option value="top">Top</option>
-          <option value="middle">Middle</option>
-          <option value="bottom">Bottom</option>
-        </select>
-      </div>
-
-      <div class="field large-3 columns">
-        <label for="textAlignment">Text Alignment</label>
-        <select v-model="textAlignment" id="textAlignment">
-          <option value="left">Left</option>
-          <option value="center">Center</option>
-          <option value="right">Right</option>
-        </select>
-      </div>
-
-      <div class="field large-3 columns">
-        <label for="fontFamily">Font Family</label>
-        <select v-model="fontFamily" id="fontFamily">
-          <option value="Avenir Next Demi,Bold">Avenir</option>
-          <option value="DIN Alternate,Bold">Din</option>
-          <option value="Charter">Charter</option>
-          <option value="Georgia">Georgia</option>
-        </select>
-      </div>
-
-      <div class="field large-3 columns">
-        <label for="logoAlignment">Logo Alignment</label>
-        <select v-model="logoAlignment" id="logoAlignment">
-          <option value="top,left">Top Left</option>
-          <option value="top,center">Top Center</option>
-          <option value="top,right">Top Right</option>
-          <option value="middle,left">Middle Left</option>
-          <option value="middle,center">Middle Center</option>
-          <option value="middle,right">Middle Right</option>
-          <option value="bottom,left">Bottom Left</option>
-          <option value="bottom,center">Bottom Center</option>
-          <option value="bottom,right">Bottom Right</option>
-        </select>
-      </div>
-
-      <div class="field large-3 columns">
-        <label for="logoPadding">Logo Padding</label>
-        <input type="number" v-model="logoPadding">
-      </div>
-
-      <img class="large-12 columns" :src="facebookImageURL">
-    </div>
-
+    </section>
   </div>
 </div>
