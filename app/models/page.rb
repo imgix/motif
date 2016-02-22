@@ -46,5 +46,7 @@ class Page < ApplicationRecord
 
   def default_logo_url
     "https://logo.clearbit.com/#{URI(url).host}?format=png&size=300"
+  rescue URI::InvalidURIError
+    nil
   end
 end
