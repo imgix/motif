@@ -1,5 +1,5 @@
 class Page < ApplicationRecord
-  PHANTOM_TIMEOUT = 12
+  PHANTOM_TIMEOUT = 18
   CACHE_DURATION = 1.month
 
   validates :url, presence: true, url: { no_local: true }
