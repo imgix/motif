@@ -20,7 +20,7 @@
     padding: 9px;
     -webkit-appearance: none;
 
-    &[readonly] {
+    &[disabled] {
       opacity: 0.6;
     }
   }

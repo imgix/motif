@@ -63,7 +63,7 @@ Vue.component('og-builder', {
     }
   },
   methods: {
-    handleURLReturn: function() {
+    handleURLSubmit: function() {
       var that = this;
       that.loading = true;
 
@@ -88,11 +88,16 @@ Vue.component('og-builder', {
         console.error(res);
       });
     },
-    handleURLClick: function() {
-      if (this.title != null) {
-        this.title = null;
-        this.url = null;
-      }
+    handleRestartClick: function() {
+      var that = this;
+
+      this.title = null;
+      this.url = null;
+
+      // Defer focus back to `urlInput`
+      setTimeout(function() {
+        that.$els.urlInput.focus();
+      }, 0);
     },
     selectFullURL: function(e) {
       e.target.select();

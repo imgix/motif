@@ -3,19 +3,39 @@
     <header class="row">
       <h1 class="large-12 columns">
         <span>1</span>
-        Paste in a URL
+        Enter a web page URL
       </h1>
     </header>
 
     <div class="row">
       <div class="field large-12 columns">
         <input
+          v-el:url-input
           type="url"
-          @keyup.13="handleURLReturn"
-          @click="handleURLClick"
+          @keyup.13="handleURLSubmit"
           v-model="url"
-          :readonly="url != '' && title"
+          :disabled="url != '' && title"
         >
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="go-button-wrapper columns small-centered small-4">
+        <button
+          v-if="!loading && title == null"
+          class="blue button"
+          @click="handleURLSubmit"
+        >
+          Let's Go!
+        </button>
+
+        <button
+          v-if="!loading && url && title !== null"
+          class="button"
+          @click="handleRestartClick"
+        >
+          Start Over
+        </button>
       </div>
     </div>
 
@@ -24,6 +44,8 @@
 
       <loader></loader>
     </div>
+
+    <motif-explanation v-if="!loading && title == null" transition="slide"></motif-explanation>
   </section>
 
   <div v-if="!loading && url && title !== null" transition="slide">
@@ -31,7 +53,7 @@
       <header class="row">
         <h1 class="large-12 columns">
           <span>2</span>
-          We made our best guess. Now you can set it up <em>just right</em>
+          We made our best guess based on the content and metadata from your page. Now you can set it up <em>just right</em>
         </h1>
       </header>
 
@@ -131,11 +153,12 @@
             <input type="text" class="final-url" v-model="fullImageURL" readonly @click="selectFullURL">
           </div>
 
-          <p>This URL can be used to replace your page's existing <code>og:image</code> content, or shared directly anywhere on the internet. If you integrate it into your page using the <code>og:image</code> tag, this dynamic image will show up whenever people share your page on sites like Facebook or Twitter, and automatically tweak its layout to fit each platform.</p>
-
-          <p>If you're replacing the <code>og:image</code> of a dynamic website, you can simply swap out the <code>url</code> and <code>image_url</code> query string parameters of the generated URL on each page, just make sure to URL encode them! the title of each unique page will be pulled in automatically.</p>
-
-          <p>If you have any questions or thoughts, we'd love to hear from you on <a href="https://twitter.com/imgix">Twitter</a>, or in <a href="http://slack.imgix.com">our community Slack</a>.
+          <ul>
+            <li>Feel free to copy and share this URL anywhere on the internet.</li>
+            <li>If you use this URL in an <code>og:image</code> tag, the image will be automatically loaded by Facebook, Twitter, Slack, and other social apps.</li>
+            <li>If you have a CMS-backed site like WordPress, Squarespace, Rails, or Jekyll, you can set up every page on your website to use images like this one in just a few minutes. Check out the <a href="/docs">full documentation</a> to learn more.</li>
+            <li>If you have any questions or thoughts, we'd love to hear from you on <a href="https://twitter.com/imgix">Twitter</a>, or in <a href="http://slack.imgix.com">our community Slack</a>.</li>
+          </ul>
         </div>
       </div>
     </section>

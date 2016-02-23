@@ -19,6 +19,10 @@
     }
   }
 
+  .go-button-wrapper {
+    text-align: center;
+  }
+
   .loading {
     text-align: center;
     margin-top: 15px;
@@ -32,6 +36,16 @@
   .field {
     .final-url[readonly] {
       opacity: 1;
+    }
+  }
+
+  .start-sharing {
+    ul {
+      margin-left: 18px;
+
+      li {
+        margin-bottom: 12px;
+      }
     }
   }
 }
