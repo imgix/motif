@@ -157,6 +157,13 @@ Vue.component('og-builder', {
     },
     facebookImageURL: function() {
       return this.fullImageURL + '&format=facebook'
+    },
+    exampleImageURL: function() {
+      var exampleURL = this.fullImageURL.
+        replace(this.fullEncodedURL, 'URL_PLACEHOLDER').
+        replace(this.encodedOgImageURL, 'URL_PLACEHOLDER');
+
+      return exampleURL;
     }
   }
 });

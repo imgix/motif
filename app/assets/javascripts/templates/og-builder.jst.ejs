@@ -153,12 +153,26 @@
             <input type="text" class="final-url" v-model="fullImageURL" readonly @click="selectFullURL">
           </div>
 
-          <ul>
-            <li>Feel free to copy and share this URL anywhere on the internet.</li>
-            <li>If you use this URL in an <code>og:image</code> tag, the image will be automatically loaded by Facebook, Twitter, Slack, and other social apps.</li>
-            <li>If you have a CMS-backed site like WordPress, Squarespace, Rails, or Jekyll, you can set up every page on your website to use images like this one in just a few minutes. Check out the <a href="/docs">full documentation</a> to learn more.</li>
-            <li>If you have any questions or thoughts, we'd love to hear from you on <a href="https://twitter.com/imgix">Twitter</a>, or in <a href="http://slack.imgix.com">our community Slack</a>.</li>
-          </ul>
+          <p>You can copy and share this URL anywhere on the internet. If you use it in an <code>og:image</code> tag, the image will be automatically loaded by Facebook, Twitter, Slack, and other social apps.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="setting-up-the-rest-of-your-website">
+      <header class="row">
+        <h1 class="large-12 columns">
+          <span>4</span>
+          Using Motif on the rest of your site
+        </h1>
+      </header>
+
+      <div class="row">
+        <div class="columns">
+          <p>If you have a CMS-powered site like WordPress, Squarespace, Rails, or Jekyll, it only takes a few minutes to set up Motif for every current <em>and</em> future page on your website. Simply use the same URL as above, but replace the <code>url</code> and <code>image_url</code> query string parameters using your CMS' template language. Here's an example showing which parts you'll need to replace:</p>
+
+          <url-example :url="exampleImageURL" url-placeholder="{{ URL-encoded URL of current page }}" image-url-placeholder="{{ URL-encoded URL of desired image background }}"></url-example>
+
+          <p>If you have any questions or thoughts, we'd love to hear from you on <a href="https://twitter.com/imgix">Twitter</a>, or in <a href="http://slack.imgix.com">our community Slack</a>.</p>
         </div>
       </div>
     </section>

@@ -1,0 +1,25 @@
+.url-example-wrapper {
+  overflow: auto;
+  margin-bottom: 24px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.url-example {
+  font-size: 0;
+  background: #eef0f3;
+  color: #6686a0;
+  border: 1px solid #0f151a;
+  border-radius: 2px;
+  display: inline-block;
+  padding: 18px;
+  white-space: nowrap;
+
+  strong {
+    color: #2a3843;
+  }
+
+  code {
+    font-size: 21px;
+    display: inline-block;
+  }
+}
