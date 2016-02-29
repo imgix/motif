@@ -7,7 +7,7 @@ class ImagesController < ApplicationController
     @page.fetch if page_is_new || @page.expired?
 
     format = params[:format] || 'full'
-    Rails.logger.warn "REFERER: #{request.referer.inspect}"
+    Rails.logger.warn "USER AGENT: #{request.user_agent}"
 
     redirect_to send("#{format}_ix_url")
   end
