@@ -20,7 +20,7 @@ class Page < ApplicationRecord
       update_attributes!({
         title: results[:title] || '',
         description: results[:description],
-        og_image_url: results[:ogImageURL],
+        og_image_url: cleaned_image_url(results[:ogImageURL]),
         accent_color: results[:accentColor],
         logo_url: default_logo_url,
         fetched_at: DateTime.now,
@@ -42,6 +42,16 @@ class Page < ApplicationRecord
       fetched_at: DateTime.now,
       last_run_errored: true
     })
+  end
+
+  def cleaned_image_url(image_url)
+    if image_url =~ /\Ahttps?:\/\//
+      image_url
+    elsif image_url.start_with? '//'
+      "https:#{image_url}"
+    else
+      "http://#{image_url}"
+    end
   end
 
   def default_logo_url
