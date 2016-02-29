@@ -14,6 +14,7 @@
           type="url"
           @keyup.13="handleURLSubmit"
           v-model="url"
+          :class="{'shake': error422, 'animated': true }"
           :disabled="url != '' && title"
         >
       </div>

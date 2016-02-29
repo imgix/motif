@@ -60,6 +60,19 @@ Vue.component('og-builder', {
     loading: {
       type: Boolean,
       default: false
+    },
+    error422: {
+      type: Boolean,
+      default: false
+    }
+  },
+  watch: {
+    error422: function(oldVal, newVal) {
+      var that = this;
+
+      setTimeout(function() {
+        that.error422 = false;
+      }, 480);
     }
   },
   methods: {
@@ -89,7 +102,12 @@ Vue.component('og-builder', {
       }, function(res) {
         that.loading = false;
 
-        alert('Something went wrong: ' + res.status);
+        if (res.status == 422) {
+          that.error422 = true;
+        } else {
+          alert('Uh oh! Something went wrong. We\'re looking into it.');
+        }
+
         console.error(res);
       });
     },

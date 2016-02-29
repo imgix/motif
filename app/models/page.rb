@@ -18,7 +18,7 @@ class Page < ApplicationRecord
       results = JSON.parse(line_data).symbolize_keys
 
       update_attributes!({
-        title: results[:title],
+        title: results[:title] || '',
         description: results[:description],
         og_image_url: results[:ogImageURL],
         accent_color: results[:accentColor],
