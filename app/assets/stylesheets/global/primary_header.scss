@@ -36,4 +36,28 @@
     text-align: center;
     max-width: 90%;
   }
+
+  @media only screen and (max-width: 374px) {
+    h2 {
+      font-size: 18px;
+
+      a {
+        margin-right: 0;
+
+        svg {
+          width: 110px;
+        }
+      }
+    }
+
+    h1 {
+      font-size: 36px;
+    }
+
+    h3 {
+      font-size: 15px;
+      line-height: 27px;
+      margin-top: 24px;
+    }
+  }
 }

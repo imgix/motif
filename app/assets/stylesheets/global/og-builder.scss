@@ -38,4 +38,24 @@
       opacity: 1;
     }
   }
+
+  .customize {
+    h3 {
+      font-size: 21px;
+      font-weight: 400;
+      position: relative;
+      padding-bottom: 6px;
+      margin-bottom: 21px;
+
+      &:after {
+        content: "";
+        display: block;
+        position: absolute;
+        bottom: 0;
+        width: calc(100% - 1.875rem);
+        height: 2px;
+        background: #4D5D6A;
+      }
+    }
+  }
 }
