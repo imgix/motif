@@ -115,6 +115,9 @@ Vue.component('og-builder', {
     encodedOgImageURL: function() {
       return encodeURIComponent(this.ogImageURL);
     },
+    encodedFontFamily: function() {
+      return encodeURIComponent(this.fontFamily);
+    },
     encodedLogoURL: function() {
       return encodeURIComponent(this.logoURL);
     },
@@ -150,7 +153,7 @@ Vue.component('og-builder', {
         '&logo_padding=',
         this.logoPadding,
         '&font_family=',
-        this.fontFamily,
+        this.encodedFontFamily,
         '&text_color=',
         this.cleanedTextColor
       ].join('')
