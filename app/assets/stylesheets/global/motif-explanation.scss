@@ -1,5 +1,15 @@
 .motif-explanation {
-  margin-top: 60px;
+  margin-top: 72px;
+
+  svg {
+    max-width: 100%;
+    margin: 0 auto 30px;
+    display: block;
+  }
+
+  h4 {
+    margin-bottom: 12px;
+  }
 
   p {
     font-size: 15px;
