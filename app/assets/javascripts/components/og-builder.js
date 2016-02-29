@@ -65,6 +65,11 @@ Vue.component('og-builder', {
   methods: {
     handleURLSubmit: function() {
       var that = this;
+
+      if (!that.url) {
+        return;
+      }
+
       that.loading = true;
 
       Vue.http.post('/pages', {

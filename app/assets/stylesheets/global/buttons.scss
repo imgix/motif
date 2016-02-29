@@ -13,6 +13,10 @@
   outline: 0;
   background: #637787;
 
+  &[disabled] {
+    opacity: 0.6;
+  }
+
   &:hover {
     color: #fff;
   }

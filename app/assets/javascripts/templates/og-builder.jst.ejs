@@ -25,6 +25,7 @@
           v-if="!loading && title == null"
           class="blue button"
           @click="handleURLSubmit"
+          :disabled="!url"
         >
           Let's Go!
         </button>
@@ -153,7 +154,7 @@
             <input type="text" class="final-url" v-model="fullImageURL" readonly @click="selectFullURL">
           </div>
 
-          <p>You can copy and share this URL anywhere on the internet. If you use it in your <code>og:image</code> and <code>twitter:image</code> tags, the image will be automatically loaded by Facebook, Twitter, Slack, and other social apps.</p>
+          <p>You can copy and share this URL anywhere on the internet. If you use it in your <code>og:image</code> and <code>twitter:image</code> tags, the image will be automatically loaded by Facebook, Twitter, Slack, and other social apps. Motif automatically adjusts the size and layout of your image to look great on every platform.</p>
         </div>
       </div>
     </section>
