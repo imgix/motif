@@ -6,13 +6,24 @@ class ImagesController < ApplicationController
     @page.save! if page_is_new
     @page.fetch if page_is_new || @page.expired?
 
-    format = params[:format] || 'full'
-    Rails.logger.warn "USER AGENT: #{request.user_agent}"
-
     redirect_to send("#{format}_ix_url")
   end
 
 private
+  def format
+    ua = request.user_agent
+
+    if params[:format]
+      params[:format]
+    elsif ua.start_with?('facebook') || ua.start_with?('Twitterbot')
+      'facebook'
+    elsif ua.include?('redditbot')
+      'reddit'
+    else
+      'full'
+    end
+  end
+
   def base_ix_params(w: 1200, h: 1200, txtsize: 66)
     ix_params = {
       w: w,
@@ -34,6 +45,15 @@ private
 
   def full_ix_url
     ix_client.path(base_url).to_url(base_ix_params)
+  end
+
+  def reddit_ix_url
+    ix_client.path(base_url).to_url({
+      w: 70,
+      h: 70,
+      fit: 'crop',
+      crop: 'faces,entropy'
+    })
   end
 
   def facebook_ix_url
