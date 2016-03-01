@@ -15,10 +15,12 @@ private
 
     if params[:format]
       params[:format]
-    elsif ua.start_with?('facebook') || ua.start_with?('Twitterbot')
-      'facebook'
-    elsif ua.include?('redditbot')
-      'reddit'
+    elsif ua
+      if ua.start_with?('facebook') || ua.start_with?('Twitterbot')
+        'facebook'
+      elsif ua.include?('redditbot')
+        'reddit'
+      end
     else
       'full'
     end
