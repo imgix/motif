@@ -1,5 +1,5 @@
 <div class="image-preview">
-  <img :src="url" @load="handleLoad">
+  <img :src="url" @load="handleLoad" @error="handleError">
 
   <div v-if="loading" transition="fade" class="loading-overlay">
     <loader></loader>

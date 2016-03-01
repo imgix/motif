@@ -18,6 +18,9 @@ Vue.component('image-preview', {
   methods: {
     handleLoad: function() {
       this.loading = false;
+    },
+    handleError: function() {
+      this.$dispatch('image-load-error');
     }
   }
 });

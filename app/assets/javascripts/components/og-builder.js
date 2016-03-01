@@ -26,8 +26,14 @@
       error422: { type: Boolean, default: false }
     },
     ready: function() {
+      var that = this;
+
       this.loadState();
       this.$watch('$data', this.saveState, { deep: true });
+
+      this.$on('image-load-error', function() {
+        that.ogImageURL = null;
+      });
     },
     watch: {
       error422: function(oldVal, newVal) {
