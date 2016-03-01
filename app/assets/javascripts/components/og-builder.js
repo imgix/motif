@@ -62,7 +62,7 @@
         }
 
         var base64Data = decodeURIComponent(data);
-        var jsonDataString = atob(base64Data);
+        var jsonDataString = Base64.decode(base64Data);
 
         this.$data = JSON.parse(jsonDataString);
       },
@@ -137,7 +137,7 @@
     computed: {
       base64Data: function() {
         var jsonData = JSON.stringify(this.$data);
-        var base64Data = btoa(jsonData);
+        var base64Data = Base64.encode(jsonData);
 
         return encodeURIComponent(base64Data);
       },
