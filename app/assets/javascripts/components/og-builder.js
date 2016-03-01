@@ -25,6 +25,10 @@
       loading: { type: Boolean, default: false },
       error422: { type: Boolean, default: false }
     },
+    ready: function() {
+      this.loadState();
+      this.$watch('$data', this.saveState, { deep: true });
+    },
     watch: {
       error422: function(oldVal, newVal) {
         var that = this;
@@ -35,6 +39,27 @@
       }
     },
     methods: {
+      saveState: function() {
+        if (!this.url) {
+          return;
+        }
+
+        if (typeof history.replaceState !== 'undefined') {
+          history.replaceState(null, '', '?d=' + this.base64Data);
+        }
+      },
+      loadState: function() {
+        data = window.location.search.split('d=')[1]
+
+        if (!data) {
+          return;
+        }
+
+        var base64Data = decodeURIComponent(data);
+        var jsonDataString = atob(base64Data);
+
+        this.$data = JSON.parse(jsonDataString);
+      },
       handleURLSubmit: function() {
         var that = this;
 
@@ -90,8 +115,12 @@
           error422: false
         };
 
-        // Defer focus back to `urlInput`
+        // Defer focus back to `urlInput`, and clear out b64 saved data
         setTimeout(function() {
+          if (typeof history.replaceState !== 'undefined') {
+            history.replaceState(null, '', '/');
+          }
+
           that.$els.urlInput.focus();
         }, 0);
       },
@@ -100,6 +129,12 @@
       }
     },
     computed: {
+      base64Data: function() {
+        var jsonData = JSON.stringify(this.$data);
+        var base64Data = btoa(jsonData);
+
+        return encodeURIComponent(base64Data);
+      },
       fullURL: function() {
         return this.url.match(/^https?:\/\//) ?
           this.url :
