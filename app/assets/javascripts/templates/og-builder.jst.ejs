@@ -19,29 +19,16 @@
           :disabled="url != '' && title"
         >
       </div>
-    </div>
 
-    <div class="row">
-      <div class="go-button-wrapper columns small-centered small-5 medium-4">
-        <template
+      <div class="action-button-wrapper columns small-12">
+        <button
           v-if="!loading && title == null"
+          class="blue button"
+          @click="handleURLSubmit"
+          :disabled="!url"
         >
-          <button
-            v-if="!url"
-            transition="slide-h"
-            class="button"
-            @click="submitRandomURL"
-          >
-            Show Me a Demo
-          </button>
-          <button
-            class="blue button"
-            @click="handleURLSubmit"
-            :disabled="!url"
-          >
-            Let's Go!
-          </button>
-        </template>
+          Let's Go!
+        </button>
 
         <button
           v-if="!loading && url && title !== null"
@@ -49,6 +36,15 @@
           @click="handleRestartClick"
         >
           Start Over
+        </button>
+
+        <button
+          v-if="!url"
+          transition="slide-fade-h"
+          class="button"
+          @click="submitRandomURL"
+        >
+          Show Me a Demo
         </button>
       </div>
     </div>
@@ -91,7 +87,7 @@
             </div>
 
             <div class="field columns medium-4 large-12">
-              <label>Accent Color</label>
+              <label>Background Color</label>
               <color-picker-input :color.sync="accentColor"></color-picker-input>
             </div>
           </div>

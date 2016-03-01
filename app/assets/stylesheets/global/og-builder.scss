@@ -19,8 +19,11 @@
     }
   }
 
-  .go-button-wrapper {
-    text-align: center;
+  .action-button-wrapper {
+    .button {
+      float: right;
+      margin-left: 21px;
+    }
   }
 
   .loading {

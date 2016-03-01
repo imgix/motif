@@ -35,3 +35,21 @@
 .fade-enter, .fade-leave {
   opacity: 0;
 }
+
+.slide-fade-h-transition {
+  transition: all 240ms ease-out;
+  overflow: hidden;
+  position: relative;
+  max-width: 200px;
+  white-space: nowrap;
+}
+
+.slide-fade-h-enter, .slide-fade-h-leave {
+  white-space: nowrap;
+  max-width: 0;
+  opacity: 0;
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: 0;
+  margin-right: 0;
+}
