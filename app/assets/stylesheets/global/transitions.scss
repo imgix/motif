@@ -12,6 +12,22 @@
   margin-bottom: 0;
 }
 
+.slide-h-transition {
+  transition: all 240ms ease-out;
+  overflow: hidden;
+  position: relative;
+}
+
+.slide-h-enter, .slide-h-leave {
+  white-space: nowrap;
+  width: 0;
+  opacity: 0;
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: 0;
+  margin-right: 0;
+}
+
 .fade-transition {
   transition: opacity 240ms ease-out;
 }

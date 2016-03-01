@@ -3,7 +3,7 @@
     <header class="row">
       <h1 class="large-12 columns">
         <span>1</span>
-        Enter a web page URL
+        Enter the URL of a blog post or news article
       </h1>
     </header>
 
@@ -12,6 +12,7 @@
         <input
           v-el:url-input
           type="url"
+          placeholder="http://…"
           @keyup.13="handleURLSubmit"
           v-model="url"
           :class="{'shake': error422, 'animated': true }"
@@ -22,14 +23,25 @@
 
     <div class="row">
       <div class="go-button-wrapper columns small-centered small-5 medium-4">
-        <button
+        <template
           v-if="!loading && title == null"
-          class="blue button"
-          @click="handleURLSubmit"
-          :disabled="!url"
         >
-          Let's Go!
-        </button>
+          <button
+            v-if="!url"
+            transition="slide-h"
+            class="button"
+            @click="submitRandomURL"
+          >
+            Show Me a Demo
+          </button>
+          <button
+            class="blue button"
+            @click="handleURLSubmit"
+            :disabled="!url"
+          >
+            Let's Go!
+          </button>
+        </template>
 
         <button
           v-if="!loading && url && title !== null"
