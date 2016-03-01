@@ -34,7 +34,6 @@ class Page < ApplicationRecord
     # GUI can just edit from this state.
 
     Raven.capture_exception(e)
-
     update_attributes!({
       title: '',
       accent_color: '000000',
@@ -51,6 +50,9 @@ class Page < ApplicationRecord
       image_url
     elsif image_url.start_with? '//'
       "https:#{image_url}"
+    elsif image_url.start_with? '/'
+      page_uri = URI(url)
+      "#{page_uri.scheme}://#{page_uri.host}#{image_url}"
     else
       "http://#{image_url}"
     end
