@@ -12,6 +12,7 @@ class ImagesController < ApplicationController
 private
   def format
     ua = request.user_agent
+    Rails.logger.info "User agent: #{ua}"
 
     if params[:format]
       params[:format]
