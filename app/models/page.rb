@@ -45,6 +45,8 @@ class Page < ApplicationRecord
   end
 
   def cleaned_image_url(image_url)
+    return if image_url.nil?
+
     if image_url =~ /\Ahttps?:\/\//
       image_url
     elsif image_url.start_with? '//'
