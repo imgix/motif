@@ -116,6 +116,7 @@ private
   end
 
   def b64(str)
+    str = '' if str.nil?
     Base64.urlsafe_encode64(str).delete('=')
   end
 end
