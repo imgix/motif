@@ -8,7 +8,7 @@ information about the URL entered.
 
 You can see a version of Motif running at [https://motif.imgix.com](https://motif.imgix.com).
 
-It is built with Rails 5.
+It is built with Rails 5 and [vue.js](http://vuejs.org/).
 
 ## Running Locally
 
