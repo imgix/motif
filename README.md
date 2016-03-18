@@ -1,15 +1,14 @@
 # Motif
 
-Create beautiful images to share your content, in just a few clicks.
+Motif is a service to create and serve responsive social images, fit to drop into any `og:image` or
+`twitter:image` meta tag.
 
-http://paul.st/fCUz
+Motif uses [imgix](https://www.imgix.com) for the image compositing, and PhantomJS for discovering
+information about the URL entered.
 
+You can see a version of Motif running at [https://motif.imgix.com](https://motif.imgix.com).
 
-## Options to Add
-
-* Text font
-* Text color
-
+It is built with Rails 5.
 
 ## Running Locally
 
@@ -18,16 +17,27 @@ You'll need:
 * Node
 * Ruby 2.3.0
   * rvm users can run `rvm install 2.3.0`
+* Bower
+  * `npm install -g bower`
 * [Heroku Toolbelt](https://toolbelt.heroku.com)
 
 Then, just run:
 
+* `bundle install`
 * `bin/rails db:setup`
-* `bin/rake bower:install`
+* `bower install`
 * `heroku local`
 
+## Deploying to Heroku
 
-## Potential Bugs + Scratchpad
+You will need to add 2 custom buildpacks if you would like to deploy to Heroku:
+- https://github.com/kellysutton/heroku-buildpack-phantomjs
+- https://github.com/qnyp/heroku-buildpack-ruby-bower.git
 
-* Broke Ass Stuart breaks… Phantom? I think? http://brokeassstuart.com/blog/2016/02/18/open-letter-to-justin-keller-tech-bro/
-* Need timeouts + crash detection for Phantom in generl
+To do so with a new app:
+
+* `heroku create -a my-motif --buildpack https://github.com/kellysutton/heroku-buildpack-phantomjs
+* `heroku buildpacks:add https://github.com/qnyp/heroku-buildpack-ruby-bower.git`
+
+From there, it's just a simple:
+* `git push heroku master`
