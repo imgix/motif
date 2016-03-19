@@ -21,9 +21,9 @@ You'll need:
   * `npm install -g bower`
 * [Heroku Toolbelt](https://toolbelt.heroku.com)
 * `libpq-dev`  
-  on RHEL systems: `yum install postgresql-devel`  
-  for Mac: `brew install postgresql`  
-  for Mac in case postgres installed via macports than `gem install pg -- --with-pg-config=/opt/local/lib/postgresql[version number]/bin/pg_config`  
+  * on RHEL systems: `yum install postgresql-devel`  
+  * for Mac: `brew install postgresql`  
+  * for Mac in case postgres installed via macports than `gem install pg -- --with-pg-config=/opt/local/lib/postgresql[version number]/bin/pg_config`  
 
 Then, just run:
 
