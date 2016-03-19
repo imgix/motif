@@ -24,6 +24,9 @@ You'll need:
   * on RHEL systems: `yum install postgresql-devel`  
   * for Mac: `brew install postgresql`  
   * for Mac in case postgres installed via macports than `gem install pg -- --with-pg-config=/opt/local/lib/postgresql[version number]/bin/pg_config`  
+* phantomjs
+  * `brew install phantomjs` 
+  * or `npm install -g phantomjs`
 
 Then, just run:
 
