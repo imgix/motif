@@ -3,7 +3,7 @@
   "description": "Create beautiful images to share your content, in just a few clicks.",
   "private": true,
   "dependencies": {
-    "vue": "^1.0.16",
+    "vue": "1.0.17",
     "vue-resource": "^0.7.0",
     "foundation": "^5.5.3",
     "animate.css": "~3.5.1",
