@@ -68,7 +68,7 @@ GEM
     i18n (0.7.0)
     imgix (1.0.0)
       addressable
-    json (1.8.3)
+    json (1.8.6)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.3)
@@ -84,8 +84,7 @@ GEM
       mini_portile2 (~> 2.0.0.rc2)
     pg (0.18.4)
     puma (2.16.0)
-    rack (2.0.0.alpha)
-      json
+    rack (2.2.3)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (5.0.0.beta2)
